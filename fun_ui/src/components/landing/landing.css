@@ -26,6 +26,39 @@
     -webkit-animation: Gradient 15s ease infinite;
     -moz-animation: Gradient 15s ease infinite;
     animation: Gradient 15s ease infinite;
+    
+}
+
+.btnn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.btn {
+    
+    background:#d2d5ff73;
+
+    width: 300px;
+    height: auto;
+    text-decoration: none;
+    padding:20px 25px;
+    border:none;
+    font-size:22px;
+    border-radius:6px;
+    cursor:pointer;
+    color:white;
+    font-weight:bold;
+    transition:0.3s ease all;
+    box-shadow:5px 5px 6px rgba(0, 0, 0, 0.292);
+
+  }
+
+.btn-focus {
+  outline:none;
+}
+.btn-clicked {
+    background:#383737;
 }
 
 

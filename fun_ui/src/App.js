@@ -9,6 +9,7 @@ import {
 import logo from './logo.svg';
 import './App.css';
 import Landing from "./components/landing/Landing";
+import Input from './components/input/Input';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Router>
           <Routes>
             <Route path="/" exact element={ <Landing/>} /> 
+            <Route path="/input" element={<Input />} />
           </Routes>
           
       </Router>
