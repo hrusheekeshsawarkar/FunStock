@@ -13,3 +13,11 @@ class Form(models.Model):
     years = models.TextField(max_length=2)
     risk = models.TextField(max_length=8)
 
+
+
+class Stock(models.Model):
+    stockName = models.TextField(max_length=30)
+    ticker = models.TextField(max_length=30)
+    price = models.TextField(max_length=30)
+    valuation = models.TextField(max_length=30)
+    
