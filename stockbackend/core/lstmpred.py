@@ -154,7 +154,8 @@ def lstm_prediction(se, stock_symbol):
     X_train, y_train = create_dataset(train_data, time_step)
     X_test, y_test = create_dataset(test_data, time_step)
 
-    model = load_model('D:/projects/Fundamental/FunStock/stockbackend/core/TechModels/ADANIPORTS_price.h5')
+    model_name = 'D:/projects/Fundamental/FunStock/stockbackend/core/TechModels/'+stock_symbol+'_price.h5'
+    model = load_model(model_name)
 
     train_predict = model.predict(X_train)
     test_predict = model.predict(X_test)
@@ -224,6 +225,7 @@ def lstm_prediction(se, stock_symbol):
     min1 = min(final_price) // 2
     max1 = max(final_price) * 1.5
     plt.ylim(min1, max1)
-    plt.savefig('plot.png')
+    plt_name = stock_symbol+'.png'
+    plt.savefig(plt_name)
 
-lstm_prediction('NSE','ADANIPORTS')
+# lstm_prediction('NSE','ADANIPORTS')

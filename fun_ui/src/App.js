@@ -4,56 +4,51 @@ import {
   Route,
   Link,
 } from "react-router-dom";
-import React, { Component }  from 'react';
-import axios from 'axios';
+import React, { Component } from "react";
+import axios from "axios";
 
-
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
 import Landing from "./components/landing/Landing";
-import Input from './components/input/Input';
+import Input from "./components/input/Input";
 import Form from "./components/form/Form";
 import Output from "./components/output/Output";
+import Detail from "./components/detail/Detail";
 
 class App extends React.Component {
-  
   state = {
-      details : [],
-  }
+    details: [],
+  };
 
   componentDidMount() {
+    let data;
 
-      let data ;
-
-      axios.get('http://localhost:8000/wel/')
-      .then(res => {
-          data = res.data;
-          this.setState({
-              details : data    
-          });
+    axios
+      .get("http://localhost:8000/wel/")
+      .then((res) => {
+        data = res.data;
+        this.setState({
+          details: data,
+        });
       })
-      .catch(err => {})
+      .catch((err) => {});
   }
 
-render() {
-
-  return (
-    
-    <div className="App">
-          
-      <Router>
+  render() {
+    return (
+      <div className="App">
+        <Router>
           <Routes>
-            <Route path="/" exact element={ <Landing/>} /> 
+            <Route path="/" exact element={<Landing />} />
             <Route path="/input" element={<Input />} />
             <Route path="/form" element={<Form />} />
             <Route path="/output" element={<Output />} />
+            <Route path="/detail" element={<Detail />} />
           </Routes>
-          
-      </Router>
-
-        </div>
-  );
-}
+        </Router>
+      </div>
+    );
+  }
 }
 
 export default App;

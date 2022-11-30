@@ -3,6 +3,8 @@ from sklearn.metrics import mean_absolute_error
 from sklearn.model_selection import train_test_split
 import pandas as pd
 
+# from .views import Stocks
+
 import joblib
 
 import os
@@ -12,8 +14,7 @@ import yfinance as yf
 path = 'D:/projects/Fundamental/FunStock/stockbackend/core/Models/TrainDataLightGBM'
 csv_files_f = glob.glob(os.path.join(path,'*.csv'))
 
-print(csv_files_f)
-
+stock_names = list()
 stockname_list = list()
 predictions = list()
 stocks_price = list()
@@ -24,8 +25,24 @@ def get_prediction():
 
         filename = t.split("\\")[-1]
         stock = t.split(".")[0]
-        stockname = stock.split('\\')[1]
-        stockname_list.append(stockname)
+        stockn = stock.split('\\')[1]
+        stock_names.append(stockn)
+
+        stockname = Stocks.get(stockn)
+        if stockname is None:
+            stockname = stockn
+        
+        ticker_s = removeSpaces(stockname)
+
+        ticker = ticker_s + ".NS"
+
+        stockname_list.append(stockn)
+        ticker_yahoo = yf.Ticker(ticker)
+
+        stockPrice = ticker_yahoo.history()['Close'].iloc[-1]
+        stockPrice = round(stockPrice,2)
+        
+        stocks_price.append(stockPrice)
 
         # ticker = stockname + ".NS"
         # ticker_yahoo = yf.Ticker(ticker)
@@ -69,12 +86,26 @@ def get_prediction():
                           valid_sets=[lgb_eval],
                           early_stopping_rounds=30)
 
-        stockFileName = 'D:/projects/Fundamental/FunStock/stockbackend/core/Data/StockDataForLightGBM/'+stockname+'.csv'
+        stockFileName = 'D:/projects/Fundamental/FunStock/stockbackend/core/Data/StockDataForLightGBM/'+stockn+'.csv'
         x_data = pd.read_csv(stockFileName)
         y_pred = model.predict(x_data)
         predictions.append(y_pred[0])
 
-        Stock_dict = {'Stock Name': stockname_list, 'Predictions': predictions}
+        print(predictions)
+
+        Stock_dict = {'Ticker': stockname_list,'StockName': stock_names, 'Predictions': predictions,'StockPrice':stocks_price}
         result = pd.DataFrame.from_dict(Stock_dict)
+        print(result)
 
     return result
+
+def removeSpaces(string):
+    string = string.replace(' ','')
+    return string
+
+Stocks = {
+    'Tech Mahindra':'TECHM','Bajaj Auto':'BAJAJ-AUTO','SBI Life Insurance':'SBILIFE','Tata Consumer':'TATACONSUM',
+    'Bajaj Finance':'BAJFINANCE', 'Bajaj Finserve':'BAJAJFINSV', 'Bharti Airtel':'BHARTIARTL','M_M':'M&M','Nestle':'NESTLEIND'
+}
+
+get_prediction()

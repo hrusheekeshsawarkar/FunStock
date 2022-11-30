@@ -14,6 +14,13 @@
   animation: Gradient 15s ease infinite;
 }
 
+.output-title {
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  padding-top: 5vh;
+  /* font-size: 40px; */
+}
+
 .flex-container {
   display: flex;
   flex-direction: column;
@@ -28,9 +35,9 @@
   text-decoration: none;
   padding: 10px 5px;
   border: none;
-  font-size: 22px;
+  /* font-size: 22px; */
   border-radius: 6px;
-  cursor: pointer;
+
   color: white;
   font-weight: bold;
   transition: 0.3s ease all;
@@ -49,10 +56,46 @@
   border: 0;
   box-sizing: border-box;
   color: rgb(3, 0, 0);
-  font-size: 28px;
+  font-size: 20px;
   height: 100%;
   outline: 0;
   padding: 4px 20px;
   margin: 10px;
   width: 99%;
+  cursor: pointer;
+}
+
+.flexi-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  align-content: center;
+}
+
+.flexi-items {
+  display: block;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  align-self: auto;
+  order: 0;
+}
+
+.output-btn {
+  background: #1b6d00;
+
+  width: 100px;
+  height: auto;
+  text-decoration: none;
+  padding: 3px 5px;
+  border: none;
+  font-size: 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  transition: 0.3s ease all;
+  box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.292);
 }

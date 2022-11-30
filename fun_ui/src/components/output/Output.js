@@ -4,11 +4,28 @@ import { Link } from "react-router-dom";
 import "./Output.css";
 
 const Output = () => {
-  const [stock, setStocks] = useState([]);
+  const [stocks, setStocks] = useState([]);
 
   const fetchStocks = async () => {
     const result = await axios.get("http://localhost:8000/fundamental/");
+    // const fresult = JSON.parse(result.data);
+    // console.log(JSON.parse(fresult));
 
+    // const filterItems = (result, field, value) => {
+    //   if (field != null) {
+    //     return arr.filter((item) => {
+    //       return item[field] === value;
+    //     });
+    //   }
+    // };
+
+    // let filter = result.filter((d) => d.price >= 1000);
+
+    // var filter = result.filter(function (item) {
+    //   return item.Price >= 1000;
+    // });
+
+    console.log("raw");
     console.log(result.data);
     setStocks(result.data);
   };
@@ -17,13 +34,10 @@ const Output = () => {
     fetchStocks();
   }, []);
 
-  const goToDetail = () => {
-    alert("detail page");
-  };
-
   return (
     <div>
       <div className="output-cont">
+        <h1 className="output-title">Stock Recommendations</h1>
         {/* {stocks.map((stocks, index) => (
             <Card
               className="m-3 rounded shadow-lg main-students-show"
@@ -44,8 +58,39 @@ const Output = () => {
             </Card>
           ))} */}
 
+        {stocks.map((stocks, index) => (
+          <div class="flex-container">
+            <div class="flex-items">
+              <div className="flexi-container" key={index}>
+                {/* <tr key={}></tr> */}
+                <div className="flexi-items">{stocks.StockName}</div>
+                {/* <div className="flexi-items">{stocks.Ticker}</div> */}
+                <div className="flexi-items">{stocks.StockPrice}</div>
+                <div className="flexi-items">{stocks.Valuation}</div>
+                <div className="flexi-items">
+                  <Link className="output-btn" to={`/${stocks.stockName}`}>
+                    Full Detail{" "}
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+
         <div class="flex-container">
-          <div class="flex-items">sdfsdfsdfd</div>
+          <div class="flex-items">
+            <div className="flexi-container">
+              <div className="flexi-items">Stockname</div>
+              <div className="flexi-items">ticker</div>
+              <div className="flexi-items">price</div>
+              <div className="flexi-items">valuation</div>
+              <div className="flexi-items">
+                <Link className="output-btn" to="/detail">
+                  Full Detail{" "}
+                </Link>
+              </div>
+            </div>
+          </div>
           <div class="flex-items">dsfsfsdf</div>
           <div class="flex-items">sdfsdfsdf</div>
           <div class="flex-items">ggsrgrege</div>
