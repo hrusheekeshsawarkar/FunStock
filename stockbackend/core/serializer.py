@@ -3,5 +3,5 @@ from . models import *
   
 class ReactSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Form
-        fields = ['capital', 'years', 'risk']
+        model = Stock
+        fields = ['stockName', 'ticker', 'price', 'valuation']

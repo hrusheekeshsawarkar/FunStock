@@ -20,4 +20,9 @@ class Stock(models.Model):
     ticker = models.TextField(max_length=30)
     price = models.TextField(max_length=30)
     valuation = models.TextField(max_length=30)
+
+
+
+
+    # image = models.ImageField(upload_to='uploads/images', null=True, blank=True) //for image
     
