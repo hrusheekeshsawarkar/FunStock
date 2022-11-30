@@ -15,7 +15,27 @@ import Input from './components/input/Input';
 import Form from "./components/form/Form";
 import Output from "./components/output/Output";
 
-function App() {
+class App extends React.Component {
+  
+  state = {
+      details : [],
+  }
+
+  componentDidMount() {
+
+      let data ;
+
+      axios.get('http://localhost:8000/wel/')
+      .then(res => {
+          data = res.data;
+          this.setState({
+              details : data    
+          });
+      })
+      .catch(err => {})
+  }
+
+render() {
 
   return (
     
@@ -30,8 +50,10 @@ function App() {
           </Routes>
           
       </Router>
+
         </div>
   );
+}
 }
 
 export default App;
