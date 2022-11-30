@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form';
 import SelectInput from './Selectfield';
 import TextField from './Textfield';
 import './Form.css'
+import axios from 'axios';
+import { useState } from 'react';
 
 const Form = () => {
 
@@ -12,8 +14,35 @@ const Form = () => {
 
     const onSubmit = (data) => {
         console.log(data)
-        navigate('/output')
+        // navigate('/output')
     }
+
+    // let history = useHistory();
+
+    const [capital, setCapital] = useState("")
+    const [years, setYears] = useState("")
+    const [risk, setRisk] = useState("")
+
+
+    const formSubmit = async () => {
+        let formField = new FormData()
+        formField.append('capital',capital)
+        formField.append('years',years)
+        formField.append('risk',risk)
+        console.log("helo");
+        // console.log(response.data);
+
+        await axios({
+          method: 'post',
+          url:'http://localhost:8000/wel/',
+          data: formField
+        }).then(response=>{
+          console.log(response.data);
+        //   history.push('/')
+        navigate('/output')
+        })
+    }
+
     // console.log(errors)
     return (
         <div className="container">
@@ -26,7 +55,9 @@ const Form = () => {
             <div className="form-container">
                 <form className="form-elements">
                     <TextField 
-                        className="textfield"
+                        value={capital}
+                        onChange={(e) => setCapital(e.target.value)}
+                        {...console.log(capital)}
                         label="capital"
                         placeholder="10000"
                         register={register}
@@ -35,6 +66,9 @@ const Form = () => {
                         rules={{ maxLength: 9, required: true, min: 4, pattern: /^[1-9][0-9]*$/ }}
                     />
                     <TextField 
+                        value={years}
+                        onChange={(e) => setYears(e.target.value)}
+                        {...console.log(years)}
                         label="years"
                         placeholder="3"
                         register={register}
@@ -43,6 +77,9 @@ const Form = () => {
                         rules={{ maxLength: 2, required: true, min: 1, pattern: /^[1-9][0-9]*$/ }}
                     />
                     <SelectInput 
+                        value={risk}
+                        onChange={(e) => setRisk(e.target.value)}
+                        {...console.log(risk)}
                         {...register('risk')}
                         label="Risk Willing to take"
                         errors={errors}
@@ -51,7 +88,7 @@ const Form = () => {
                     />
                     <input 
                         type="submit"
-                        onClick={handleSubmit(onSubmit)}
+                        onClick={handleSubmit(formSubmit)}
                         className="btn"
                         
                     /> 

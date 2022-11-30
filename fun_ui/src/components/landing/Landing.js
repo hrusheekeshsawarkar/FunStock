@@ -46,10 +46,10 @@ class Landing extends React.Component {
             <div key={id}>
             <div >
                   <div >
-                        <h1>{detail.detail} </h1>
+                        <h1>{detail.capital} </h1>
                         <footer >--- by
                         <cite title="Source Title">
-                        {detail.name}</cite>
+                        {detail.years}</cite>
                         </footer>
                   </div>
             </div>
