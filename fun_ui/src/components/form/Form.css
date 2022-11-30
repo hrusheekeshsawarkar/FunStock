@@ -4,7 +4,7 @@
     width: 100wh;
     /* height: 130vh; */
     height: auto;
-    min-height: 100% !important;
+    min-height: 100vh !important;
     padding: 10px;
     color: #fff;
     background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);

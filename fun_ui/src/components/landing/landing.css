@@ -29,13 +29,13 @@
     
 }
 
-.btnn {
+.landing-btnn {
   display: flex;
   justify-content: center;
   align-items: center;
 
 }
-.btn {
+.landing-btn {
     
     background:#d2d5ff73;
 
