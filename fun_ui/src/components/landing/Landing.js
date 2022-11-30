@@ -1,3 +1,4 @@
+import React, { Component }  from 'react';
 import { Route, Router, Routes, Link } from 'react-router-dom';
 
 import Input from '../input/Input';
@@ -7,10 +8,7 @@ import './landing.css'
  const Landing = () =>{
 
     return ( 
-      //  <Router>
-         // <Routes>
-         //    <Route path="/" element={<Input />} />
-         // </Routes>
+
          <div className="test">
             <div className="title">
                <h1>FunStock</h1>    
@@ -22,7 +20,7 @@ import './landing.css'
                <Link className='btn' to="/input">Get Started</Link>    
             </div>
          </div>
-      // </Router>
+
 
      );
    
