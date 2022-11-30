@@ -9,7 +9,7 @@ from django.db import models
 
 
 class Form(models.Model):
-    capital = models.TextField()
-    years = models.TextField()
+    capital = models.TextField(max_length=10)
+    years = models.TextField(max_length=2)
     risk = models.TextField(max_length=8)
 

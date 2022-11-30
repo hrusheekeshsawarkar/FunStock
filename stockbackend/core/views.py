@@ -15,8 +15,8 @@ class ReactView(APIView):
 		return Response(detail)
 
 	def post(self, request):
-
-		serializer = ReactSerializer(data=request.data)
-		if serializer.is_valid(raise_exception=True):
-			serializer.save()
-			return Response(serializer.data)
+         print(request.data)
+         serializer = ReactSerializer(data=request.data)
+         if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data)
