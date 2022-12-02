@@ -9,6 +9,8 @@ from rest_framework.views import APIView
 from . models import *
 from rest_framework.response import Response
 from . serializer import *
+from rest_framework import viewsets
+from rest_framework.decorators import api_view
 
 from django.http import HttpResponse
 # Create your views here.
@@ -28,6 +30,17 @@ class ReactView(APIView):
          if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
+
+class ImageView(viewsets.ModelViewSet):
+    queryset = Image.objects.all()
+    serializer_class = ImageSerializer
+
+@api_view(['GET'])
+def showAllImage(request):
+
+    images = Image.objects.all()
+    serilizer = ImageSerializer(images, many=True)
+    return Response(serilizer.data)
 
 
 def fundamental(request):
@@ -175,6 +188,8 @@ def technical(request,stockName):
 	from .lstmpred import lstm_prediction
 
 	lstm_prediction('NSE',stock_symbol=stockName)
+
+	return HttpResponse('D:/projects/Fundamental/FunStock/stockbackend/core/Plots/ADANIPORTS.png')
 
 def get_valuation(x):
     if x<0:

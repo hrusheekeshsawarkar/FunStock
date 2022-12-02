@@ -17,12 +17,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.urls import re_path as url
+from rest_framework import routers
+from django.conf import settings
+from django.conf.urls.static import static
 
 from core.views import *
+
+route = routers.DefaultRouter()
+route.register("",ImageView,basename="imageview")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('wel/', ReactView.as_view(), name="something"),
     path('fundamental/', fundamental, name=""),
-    path('technical/<stockName>',technical,name="")
-]
+    path('technical/<stockName>',technical,name=""),
+    path('technicall', include(route.urls)), 
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

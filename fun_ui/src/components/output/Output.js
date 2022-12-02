@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, createSearchParams, useNavigate } from "react-router-dom";
 import "./Output.css";
 
 const Output = () => {
@@ -34,6 +34,25 @@ const Output = () => {
     fetchStocks();
   }, []);
 
+  const navigate = useNavigate();
+  // const openprofile = (id) => {
+  //   navigate({
+  //     pathname: "/detail",
+  //     search: createSearchParams({
+  //       id: "SBILIFE",
+  //     }).toString(),
+  //   });
+  // };
+
+  function openprofile(stockName) {
+    navigate({
+      pathname: "/detail",
+      search: createSearchParams({
+        id: stockName,
+      }).toString(),
+    });
+  }
+  const str = stocks.stockName;
   return (
     <div>
       <div className="output-cont">
@@ -68,9 +87,18 @@ const Output = () => {
                 <div className="flexi-items">{stocks.StockPrice}</div>
                 <div className="flexi-items">{stocks.Valuation}</div>
                 <div className="flexi-items">
-                  <Link className="output-btn" to={`/${stocks.stockName}`}>
+                  {/* <Link
+                    className="output-btn"
+                    to={{ pathname: "/detail", state: stocks.StockName }}
+                  >
                     Full Detail{" "}
-                  </Link>
+                  </Link> */}
+                  <button
+                    className="output-btn"
+                    onClick={() => openprofile(stocks.StockName)}
+                  >
+                    Full Detail
+                  </button>
                 </div>
               </div>
             </div>
@@ -102,6 +130,7 @@ const Output = () => {
       </div>
     </div>
   );
+  // export const str = stocks.stockName;
 };
-
+// export str;
 export default Output;

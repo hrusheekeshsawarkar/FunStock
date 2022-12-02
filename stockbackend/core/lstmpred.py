@@ -225,7 +225,8 @@ def lstm_prediction(se, stock_symbol):
     min1 = min(final_price) // 2
     max1 = max(final_price) * 1.5
     plt.ylim(min1, max1)
-    plt_name = stock_symbol+'.png'
+
+    plt_name = 'D:/projects/Fundamental/FunStock/stockbackend/core/media/Plots/'+stock_symbol+'.png'
     plt.savefig(plt_name)
 
 # lstm_prediction('NSE','ADANIPORTS')

@@ -23,6 +23,7 @@ class Stock(models.Model):
 
 
 
-
+class Image(models.Model):
+    image = models.ImageField(upload_to='Plots', null=True, blank=True)
     # image = models.ImageField(upload_to='uploads/images', null=True, blank=True) //for image
     
