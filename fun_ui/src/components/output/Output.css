@@ -42,6 +42,9 @@
   font-weight: bold;
   transition: 0.3s ease all;
   box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.292);
+  /* border: 2px solid forestgreen; */
+  /* width: 800px; */
+  /* height: 200px; */
 }
 
 .flex-items {
@@ -65,6 +68,10 @@
   cursor: pointer;
 }
 
+.t {
+  border-bottom: 1px solid black;
+}
+
 .flexi-container {
   display: flex;
   flex-direction: row;
@@ -81,12 +88,14 @@
   flex-basis: auto;
   align-self: auto;
   order: 0;
+  width: 200px;
+  align-content: center;
 }
 
 .output-btn {
   background: #1b6d00;
-
-  width: 100px;
+  align-content: center;
+  width: 200px;
   height: auto;
   text-decoration: none;
   padding: 3px 5px;

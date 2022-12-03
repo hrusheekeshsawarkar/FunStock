@@ -11,20 +11,6 @@ const Output = () => {
     // const fresult = JSON.parse(result.data);
     // console.log(JSON.parse(fresult));
 
-    // const filterItems = (result, field, value) => {
-    //   if (field != null) {
-    //     return arr.filter((item) => {
-    //       return item[field] === value;
-    //     });
-    //   }
-    // };
-
-    // let filter = result.filter((d) => d.price >= 1000);
-
-    // var filter = result.filter(function (item) {
-    //   return item.Price >= 1000;
-    // });
-
     console.log("raw");
     console.log(result.data);
     setStocks(result.data);
@@ -35,20 +21,14 @@ const Output = () => {
   }, []);
 
   const navigate = useNavigate();
-  // const openprofile = (id) => {
-  //   navigate({
-  //     pathname: "/detail",
-  //     search: createSearchParams({
-  //       id: "SBILIFE",
-  //     }).toString(),
-  //   });
-  // };
 
-  function openprofile(stockName) {
+  function openprofile(stockName, Price, Valuation) {
     navigate({
       pathname: "/detail",
       search: createSearchParams({
-        id: stockName,
+        name: stockName,
+        price: Price,
+        valuation: Valuation,
       }).toString(),
     });
   }
@@ -77,22 +57,16 @@ const Output = () => {
             </Card>
           ))} */}
 
-        {stocks.map((stocks, index) => (
+        {/* {stocks.map((stocks, index) => (
           <div class="flex-container">
             <div class="flex-items">
               <div className="flexi-container" key={index}>
-                {/* <tr key={}></tr> */}
+                {/* <tr key={}></tr> 
                 <div className="flexi-items">{stocks.StockName}</div>
-                {/* <div className="flexi-items">{stocks.Ticker}</div> */}
+                {/* <div className="flexi-items">{stocks.Ticker}</div> 
                 <div className="flexi-items">{stocks.StockPrice}</div>
                 <div className="flexi-items">{stocks.Valuation}</div>
                 <div className="flexi-items">
-                  {/* <Link
-                    className="output-btn"
-                    to={{ pathname: "/detail", state: stocks.StockName }}
-                  >
-                    Full Detail{" "}
-                  </Link> */}
                   <button
                     className="output-btn"
                     onClick={() => openprofile(stocks.StockName)}
@@ -103,7 +77,43 @@ const Output = () => {
               </div>
             </div>
           </div>
-        ))}
+        ))} */}
+
+        <table className="flex-container">
+          <tr className="flex-items t">
+            <div className="flexi-container">
+              <th className="flexi-items">Stock Name</th>
+              <th className="flexi-items">Price</th>
+              <th className="flexi-items">Valuation</th>
+              <th className="flexi-items">Detail Analysis</th>
+            </div>
+          </tr>
+          {stocks.map((stocks, index) => {
+            return (
+              <div className="flex-items">
+                <tr key={index} className="flexi-container">
+                  <td className="flexi-items">{stocks.StockName}</td>
+                  <td className="flexi-items">{stocks.StockPrice}</td>
+                  <td className="flexi-items">{stocks.Valuation}</td>
+                  <td className="flexi-items">
+                    <button
+                      className="output-btn flexi-items"
+                      onClick={() =>
+                        openprofile(
+                          stocks.StockName,
+                          stocks.StockPrice,
+                          stocks.Valuation
+                        )
+                      }
+                    >
+                      Full Detail
+                    </button>
+                  </td>
+                </tr>
+              </div>
+            );
+          })}
+        </table>
 
         <div class="flex-container">
           <div class="flex-items">

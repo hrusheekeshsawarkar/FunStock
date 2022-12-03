@@ -31,5 +31,5 @@ urlpatterns = [
     path('wel/', ReactView.as_view(), name="something"),
     path('fundamental/', fundamental, name=""),
     path('technical/<stockName>',technical,name=""),
-    path('technicall', include(route.urls)), 
+    path('technicall/', ImageView.as_view({'GET':'get'})),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

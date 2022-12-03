@@ -15,6 +15,8 @@ from rest_framework.decorators import api_view
 from django.http import HttpResponse
 # Create your views here.
 
+query = dict()
+
 class ReactView(APIView):
 	
 	serializer_class = ReactSerializer
@@ -26,27 +28,41 @@ class ReactView(APIView):
 
 	def post(self, request):
          print(request.data)
+         query = request.data
          serializer = ReactSerializer(data=request.data)
          if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
 
 class ImageView(viewsets.ModelViewSet):
-    queryset = Image.objects.all()
-    serializer_class = ImageSerializer
+	model = Image
+	queryset = Image.objects.all()
+	serializer_class = ImageSerializer
+	
+	def get(self,request):
+		# path = settings.MEDIA_ROOT
+        # img_list = os.listdir(path + "(path to image folder in media)")
+		# context = {"images": img_list}
+		queryset = Image.objects.all()
+		print(queryset)
+        # images = Image.objects.all()
+		serilizer = ImageSerializer(queryset, many=True)
+		return Response(serilizer.data)
 
-@api_view(['GET'])
-def showAllImage(request):
+# @api_view(['GET'])
+# def showAllImage(request):
 
-    images = Image.objects.all()
-    serilizer = ImageSerializer(images, many=True)
-    return Response(serilizer.data)
+#     images = Image.objects.all()
+#     serilizer = ImageSerializer(images, many=True)
+#     return Response(serilizer.data)
 
 
 def fundamental(request):
 	
 	from catboost import CatBoostRegressor
 	model = CatBoostRegressor()
+
+	print(query.get('capital'))
 	
 	path_cat_model = 'D:/projects/Fundamental/FunStock/stockbackend/core/Models/ModelCatBoost'
 	model_files_f = glob.glob(os.path.join(path_cat_model, '*.cbm'))
@@ -186,6 +202,8 @@ def fundamental(request):
 def technical(request,stockName):
 
 	from .lstmpred import lstm_prediction
+
+	print('Hello')
 
 	lstm_prediction('NSE',stock_symbol=stockName)
 

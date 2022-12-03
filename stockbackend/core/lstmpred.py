@@ -4,7 +4,9 @@ import numpy as np
 from keras.models import load_model
 
 def lstm_prediction(se, stock_symbol):
+    print(stock_symbol)
     def fetch_stock_data(se, stock_symbol,sdate,edate):
+        print(stock_symbol)
         """fetch stock data"""
         from pandas_datareader import data as pdr
         yf.pdr_override()
@@ -226,7 +228,7 @@ def lstm_prediction(se, stock_symbol):
     max1 = max(final_price) * 1.5
     plt.ylim(min1, max1)
 
-    plt_name = 'D:/projects/Fundamental/FunStock/stockbackend/core/media/Plots/'+stock_symbol+'.png'
+    plt_name = 'D:/projects/Fundamental/FunStock/fun_ui/src/media/'+stock_symbol+'.png'
     plt.savefig(plt_name)
 
 # lstm_prediction('NSE','ADANIPORTS')

@@ -6,6 +6,6 @@ import { AdvancedChart } from "react-tradingview-embed";
 function Embed(props) {
   const name = props.name;
 
-  return <AdvancedChart widgetProps={{ theme: "dark", symbol: name }} />;
+  return <AdvancedChart widgetProps={{ theme: "light", symbol: name }} />;
 }
 export default Embed;
