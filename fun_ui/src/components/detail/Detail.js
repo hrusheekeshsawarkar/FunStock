@@ -1,9 +1,11 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+import { TimedImage } from "react-timed-image";
 import "./Detail.css";
 import Embed from "./Embed";
-import ON from "../assets/images/ONGC.png";
+import Image from "./Image";
+// import ON from "../assets/images/ONGC.png";
 
 const Detail = () => {
   const [image, setImage] = useState([]);
@@ -52,13 +54,18 @@ const Detail = () => {
         </table>
         {/* <h1 className="output-title">{image.name}</h1> */}
         <Embed name={name} />
-        <img
+        {/* <img
           variant="top"
           className="image"
-          // src={require(`./media/${name}.png`)}
-          // src={require("/media/ONGC.png")}
-          src={require({ ON })}
-        />
+          // src={require(`../media/${name}.png`)}
+
+          src={require("../media/ONGC.png")}
+          // src={require({ ON })}
+        /> */}
+        <h1>hello</h1>
+        <Image name={name} />
+        <h1>hii</h1>
+        {/* <TimedImage src={`../media/${name}.png`} interval={3000} /> */}
         {/* {images.map(({ name }) => (
           <img className="image" src={require(`./media/${name}.png`)} />
         ))} */}
