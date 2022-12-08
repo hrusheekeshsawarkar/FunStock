@@ -1,99 +1,127 @@
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
 
+.title {
+  font-family: "Abril Fatface", cursive;
+  text-align: center;
+  padding-top: 35vh;
+  font-size: 30px;
 
-.title{
-    font-family: 'Abril Fatface', cursive;
-    text-align: center;
-    padding-top: 35vh;
-    font-size: 30px;
-
-
-    
-    /* margin-top: 500px; */
+  /* margin-top: 500px; */
 }
 
 .para {
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  margin: 20px;
+}
 
-    font-size:20px ;
+.obj {
+  background: #d2d5ff73;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: normal;
+  align-items: normal;
+  align-content: stretch;
+  width: 800px;
+  align-self: center;
+
+  height: auto;
+  text-decoration: none;
+  padding: 10px 5px;
+  border: none;
+  /* font-size: 22px; */
+  border-radius: 6px;
+}
+
+.obj-items {
+  background: #1f2eff60;
+  display: block;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  align-self: auto;
+  order: 0;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 6px;
 }
 
 .test {
-    width: 100wh;
-    height: 100vh;
-    color: #fff;
-    background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
-    background-size: 400% 400%;
-    -webkit-animation: Gradient 15s ease infinite;
-    -moz-animation: Gradient 15s ease infinite;
-    animation: Gradient 15s ease infinite;
-    
+  width: 100wh;
+  height: 100vh;
+  color: #fff;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  -webkit-animation: Gradient 15s ease infinite;
+  -moz-animation: Gradient 15s ease infinite;
+  animation: Gradient 15s ease infinite;
 }
 
 .landing-btnn {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 .landing-btn {
-    
-    background:#d2d5ff73;
+  background: #00b40373;
 
-    width: 300px;
-    height: auto;
-    text-decoration: none;
-    padding:20px 25px;
-    border:none;
-    font-size:22px;
-    border-radius:6px;
-    cursor:pointer;
-    color:white;
-    font-weight:bold;
-    transition:0.3s ease all;
-    box-shadow:5px 5px 6px rgba(0, 0, 0, 0.292);
-
-  }
+  width: 300px;
+  height: auto;
+  text-decoration: none;
+  padding: 20px 25px;
+  border: none;
+  font-size: 22px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  transition: 0.3s ease all;
+  box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.292);
+}
 
 .btn-focus {
-  outline:none;
+  outline: none;
 }
 .btn-clicked {
-    background:#383737;
+  background: #383737;
 }
 
-
 @-webkit-keyframes Gradient {
-    0% {
-    background-position: 0% 50%
-    }
+  0% {
+    background-position: 0% 50%;
+  }
   50% {
-  background-position: 100% 50%
+    background-position: 100% 50%;
   }
   100% {
-  background-position: 0% 50%
+    background-position: 0% 50%;
   }
+}
+
+@-moz-keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
   }
-  
-  @-moz-keyframes Gradient {
-    0% {
-    background-position: 0% 50%
-    }
   50% {
-  background-position: 100% 50%
+    background-position: 100% 50%;
   }
   100% {
-  background-position: 0% 50%
+    background-position: 0% 50%;
   }
+}
+
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
   }
-  
-  @keyframes Gradient {
-    0% {
-    background-position: 0% 50%
-    }
   50% {
-  background-position: 100% 50%
+    background-position: 100% 50%;
   }
   100% {
-  background-position: 0% 50%
+    background-position: 0% 50%;
   }
-  }
+}

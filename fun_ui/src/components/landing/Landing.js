@@ -31,7 +31,19 @@ class Landing extends React.Component {
           <h1>FunStock</h1>
         </div>
         <div className="para">
-          <p>Sky is the Limit</p>
+          <div className="obj">
+            <h2>Objectives</h2>
+            <div className="obj-items">
+              Research and implement the optimal machine learning techniques for
+              Stock Market Prediction
+            </div>
+            <div className="obj-items">
+              To pick the optimal stocks according to user's risk appetite
+            </div>
+            <div className="obj-items">
+              To facilitate better investment decisions in the market
+            </div>
+          </div>
         </div>
         <div className="landing-btnn">
           <Link className="landing-btn" to="/input">
