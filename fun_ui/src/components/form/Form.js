@@ -25,7 +25,7 @@ const Form = () => {
 
   const [capital, setCapital] = useState(null);
   const [years, setYears] = useState("");
-  const [risk, setRisk] = useState("0%-5%");
+  const [risk, setRisk] = useState("0");
   const [dummy, setDummy] = useState(null);
 
   const formSubmit = async () => {
@@ -146,10 +146,10 @@ const Form = () => {
               onChange={(e) => setRisk(e.target.value)}
             >
               options={["0%-5%", "5%-10%", "10%-15%", "15%-20%"]}
-              <option value="0%-5%">0%-5%</option>
-              <option value="5%-10%">5%-10%</option>
-              <option value="10%-15%">10%-15%</option>
-              <option value="15%-20%">15%-20%</option>
+              <option value="0">0%-5%</option>
+              <option value="1">5%-10%</option>
+              <option value="2">10%-15%</option>
+              <option value="3">15%-20%</option>
               {/* rules={{ required: true }} */}
             </select>
           </div>

@@ -59,19 +59,25 @@ class ImageView(viewsets.ModelViewSet):
 
 def fundamental(request):
 	
+	# query_set = Form.objects.last().values_list('capital')
+	capital_val = Form.objects.last().capital
+	years_val = Form.objects.last().years
+	risk_val = Form.objects.last().risk
+
+	# print(query_set)
 	from catboost import CatBoostRegressor
 	model = CatBoostRegressor()
 
-	print(query.get('capital'))
-	
+	# print(query.get('capital'))
+
 	path_cat_model = 'D:/projects/Fundamental/FunStock/stockbackend/core/Models/ModelCatBoost'
 	model_files_f = glob.glob(os.path.join(path_cat_model, '*.cbm'))
-	
+
 	stocks_list = list()
 	stocks_names = list()
 	predictions = list()
 	stocks_price = list()
-	
+
 	for t in model_files_f:
 		model.load_model(t)
 		stockn = t.split('\\')[1].split('_')[0]
@@ -97,11 +103,12 @@ def fundamental(request):
 		result_dict_cat = {'Ticker': stocks_list,'StockName': stocks_names, 'Predictions': predictions,'StockPrice':stocks_price}
 		result_cat = pd.DataFrame.from_dict(result_dict_cat)
 
-    #LightGBM
+	#LightGBM
 
 	from .lightBGMstocks import get_prediction
 	result_lightgbm = get_prediction()
-	print(result_lightgbm)
+	result_lightgbm.drop_duplicates()
+	# print(result_lightgbm)
 
 	#Random Forest
 	path_rf_model = 'D:/projects/Fundamental/FunStock/stockbackend/core/Models/ModelRandomForest'
@@ -171,16 +178,6 @@ def fundamental(request):
 		stockPrice = round(stockPrice,2)
 		stocks_price.append(stockPrice)
 
-		# ticker_s = removeSpaces(stockname)
-
-		# ticker = ticker_s + ".NS"
-		# print(ticker_s)
-		# print(ticker)
-		
-		# ticker_yahoo = yf.Ticker(ticker)
-		# stockPrice = ticker_yahoo.history()['Close'].iloc[-1]
-		# stocks_price.append(stockPrice)
-
 		stocks_list.append(stockname)
 		stockfile = 'D:/projects/Fundamental/FunStock/stockbackend/core/Data/StockDataForXGBoost/' + stockn + '.csv'
 		data = pd.read_csv(stockfile)
@@ -196,7 +193,28 @@ def fundamental(request):
 	final_res['Difference'] = final_res.apply(lambda row: row['StockPrice']-row['Predictions'],axis=1)
 	final_res['Percent'] = final_res.apply(lambda row: row['Difference']/row['StockPrice']*100,axis=1)
 	final_res['Valuation'] = final_res.apply(lambda row: get_valuation(row['Percent']),axis=1)
-	d = final_res.to_json(orient='records')
+	#0-5 --> UnderValued
+	#5-10 ---> UnderValued, OverValued
+    #10-15 ----> O,V,V
+	#15-20 ---> No Filter
+	if risk_val=="0":
+		options = ['UnderValued']
+	elif risk_val=="1":
+		options = ['UnderValued','OverValued']
+	elif risk_val=="2":
+		options = ['OverValued','UnderValued','ValuedProperly']
+	else:
+		options = ['OverValued','UnderValued','ValuedProperly','Highly Overvalued']
+
+	rslt_df = final_res[(final_res['StockPrice']<int(capital_val)/10) & final_res['Valuation'].isin(options)]
+
+	rslt_df.drop_duplicates()
+	rslt_df.sort_values(by=['Valuation'],inplace=True,ascending=False)
+
+	d = rslt_df.to_json(orient='records')
+	print(capital_val)
+	print(risk_val, " risk")
+	print(years_val, " years")
 	return HttpResponse(d)
 
 def technical(request,stockName):

@@ -62,9 +62,9 @@ const Detail = () => {
           src={require("../media/ONGC.png")}
           // src={require({ ON })}
         /> */}
-        <h1>hello</h1>
+
         <Image name={name} />
-        <h1>hii</h1>
+
         {/* <TimedImage src={`../media/${name}.png`} interval={3000} /> */}
         {/* {images.map(({ name }) => (
           <img className="image" src={require(`./media/${name}.png`)} />

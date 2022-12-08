@@ -94,10 +94,10 @@ def get_prediction():
         print(predictions)
 
         Stock_dict = {'Ticker': stockname_list,'StockName': stock_names, 'Predictions': predictions,'StockPrice':stocks_price}
-        result = pd.DataFrame.from_dict(Stock_dict)
+        result = pd.DataFrame.from_dict(Stock_dict).drop_duplicates()
         print(result)
 
-    return result
+    return result.drop_duplicates()
 
 def removeSpaces(string):
     string = string.replace(' ','')
@@ -107,5 +107,3 @@ Stocks = {
     'Tech Mahindra':'TECHM','Bajaj Auto':'BAJAJ-AUTO','SBI Life Insurance':'SBILIFE','Tata Consumer':'TATACONSUM',
     'Bajaj Finance':'BAJFINANCE', 'Bajaj Finserve':'BAJAJFINSV', 'Bharti Airtel':'BHARTIARTL','M_M':'M&M','Nestle':'NESTLEIND'
 }
-
-get_prediction()
