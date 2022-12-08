@@ -37,6 +37,7 @@ const Output = () => {
     <div>
       <div className="output-cont">
         <h1 className="output-title">Stock Recommendations</h1>
+        <p>Stock Recommendations based on your investment plan</p>
 
         <table className="flex-container">
           <tr className="flex-items t">
@@ -44,7 +45,7 @@ const Output = () => {
               <th className="flexi-items">Stock Name</th>
               <th className="flexi-items">Price</th>
               <th className="flexi-items">Valuation</th>
-              <th className="flexi-items">Detail Analysis</th>
+              <th className="flexi-items">Further Analysis</th>
             </div>
           </tr>
           {stocks.map((stocks, index) => {
@@ -65,7 +66,7 @@ const Output = () => {
                         )
                       }
                     >
-                      Full Detail
+                      Further Analysis
                     </button>
                   </td>
                 </tr>
