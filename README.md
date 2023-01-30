@@ -1,2 +1,2 @@
 # FunStock
-A software that suggests that suits best for the client based on fundamental analysis
+A Web Application that suggests Indian equity stocks that suits best for the client based on fundamental analysis
